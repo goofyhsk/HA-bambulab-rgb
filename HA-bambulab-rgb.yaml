@@ -1,6 +1,6 @@
 blueprint:
-  name: Bambu Lab WLED Controller
-  description: Control one or more WLED lights with Bambu 3d printer
+  name: Bambu Lab Zigbee RGB Controller
+  description: Control one or more RGB lights with Bambu 3d printer
   domain: automation
   input:
     printer_status:
@@ -34,15 +34,15 @@ blueprint:
             integration: bambu_lab
           multiple: false
     wled_lights:
-      name: WLED Light devices
-      description: Select the WLED light devices you wish to control.
+      name: RGB Light devices
+      description: Select the RGB light devices you wish to control.
       selector:
         device:
           filter:
-          - integration: wled
+          - integration: zha
           multiple: true
   source_url: https://gist.github.com/dreed47/b33a76472cc813f7bf48a63c3dde7dce
-alias: Bambu Lab WLED Controller
+alias: Bambu Lab RGB Controller
 description: ''
 trigger:
 - platform: state
@@ -91,7 +91,7 @@ action:
       - 255
       brightness_pct: 100
       effect: Freqmatrix
-    alias: Turn WLED light on white with effect
+    alias: Turn RGB light on white with effect
     target:
       device_id: !input wled_lights
   - choose:
@@ -130,7 +130,7 @@ action:
           effect: Blink
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to red
+        alias: Turn on RGB to red
     alias: Do we need to set color to red?
   - choose:
     - conditions:
@@ -150,7 +150,7 @@ action:
           effect: Oscillate
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to fushia with oscillate effect
+        alias: Turn on RGB to fushia with oscillate effect
     alias: Do we need to set color to white?
   - choose:
     - conditions:
@@ -170,7 +170,7 @@ action:
           effect: Solid
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to full white while printing
+        alias: Turn on RGB to full white while printing
     alias: Do we need to set color to white?
   - choose:
     - conditions:
@@ -193,7 +193,7 @@ action:
           effect: Solid
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to white to check if loading/unloading is ok
+        alias: Turn on RGB to white to check if loading/unloading is ok
     alias: Do we need to set color to white?
   - choose:
     - conditions:
@@ -213,7 +213,7 @@ action:
           effect: Solid
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to green
+        alias: Turn on RGB to green
     alias: Do we need to set color to green?
   - choose:
     - conditions:
@@ -233,7 +233,7 @@ action:
           effect: Blink
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to green with blink effect
+        alias: Turn on RGB to green with blink effect
     alias: Do we need to set color to green?
   - choose:
     - conditions:
@@ -253,7 +253,7 @@ action:
           effect: Blink
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to blue
+        alias: Turn on RGB to blue
     alias: Do we need to set color to blue?
   - choose:
     - conditions:
@@ -276,7 +276,7 @@ action:
           effect: Blink
         target:
           device_id: !input wled_lights
-        alias: Turn on Wled to yellow
+        alias: Turn on RGB to yellow
     alias: Do we need to set color to yellow?
   else:
     - if:
@@ -299,6 +299,7 @@ action:
           data: {}
           target:
             device_id: !input wled_lights
-          alias: Turn WLED light off
+          alias: Turn RGB light off
 mode: single
+
 
