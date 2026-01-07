@@ -33,7 +33,7 @@ blueprint:
             - binary_sensor
             integration: bambu_lab
           multiple: false
-    wled_lights:
+    zha_lights:
       name: RGB Light devices
       description: Select the RGB light devices you wish to control.
       selector:
@@ -93,7 +93,7 @@ action:
       effect: Freqmatrix
     alias: Turn RGB light on white with effect
     target:
-      device_id: !input wled_lights
+      device_id: !input zha_lights
   - choose:
     - conditions:
       - condition: or
@@ -149,7 +149,7 @@ action:
           brightness: 200
           effect: Oscillate
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to fushia with oscillate effect
     alias: Do we need to set color to white?
   - choose:
@@ -169,7 +169,7 @@ action:
           brightness: 255
           effect: Solid
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to full white while printing
     alias: Do we need to set color to white?
   - choose:
@@ -192,7 +192,7 @@ action:
           brightness: 255
           effect: Solid
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to white to check if loading/unloading is ok
     alias: Do we need to set color to white?
   - choose:
@@ -212,7 +212,7 @@ action:
           brightness: 255
           effect: Solid
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to green
     alias: Do we need to set color to green?
   - choose:
@@ -232,7 +232,7 @@ action:
           brightness: 255
           effect: Blink
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to green with blink effect
     alias: Do we need to set color to green?
   - choose:
@@ -252,7 +252,7 @@ action:
           brightness: 255
           effect: Blink
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to blue
     alias: Do we need to set color to blue?
   - choose:
@@ -275,7 +275,7 @@ action:
           brightness: 255
           effect: Blink
         target:
-          device_id: !input wled_lights
+          device_id: !input zha_lights
         alias: Turn on RGB to yellow
     alias: Do we need to set color to yellow?
   else:
@@ -298,8 +298,9 @@ action:
         - service: light.turn_off
           data: {}
           target:
-            device_id: !input wled_lights
+            device_id: !input zha_lights
           alias: Turn RGB light off
 mode: single
+
 
 
