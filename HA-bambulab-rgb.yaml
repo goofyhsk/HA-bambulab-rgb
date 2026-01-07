@@ -129,7 +129,7 @@ action:
           brightness: 255
           effect: Blink
         target:
-          device_id: !input https://github.com/goofyhsk/HA-bambulab-rgb/blob/504f7b1fc0e76ee4b7a6720cedb29c6952b00648/HA-bambulab-rgb.yaml
+          device_id: !input zha_lights
         alias: Turn on RGB to red
     alias: Do we need to set color to red?
   - choose:
@@ -301,6 +301,7 @@ action:
             device_id: !input zha_lights
           alias: Turn RGB light off
 mode: single
+
 
 
 
