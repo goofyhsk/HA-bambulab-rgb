@@ -281,15 +281,15 @@ action:
   else:
     - if:
       - condition: state
-        state: 'off'
-        alias: printer state is off for 15 sec
-        entity_id: !input printer_state
+        state: 'idle'
+        alias: printer state is idle for 15 sec
+        entity_id: !input current_stage
       then:
       - delay: "00:00:15"
       - if:
         - condition: state
-          state: 'off'
-          entity_id: !input printer_state
+          state: 'idle'
+          entity_id: !input current_stage
           for:
             hours: 0
             minutes: 0
@@ -301,6 +301,7 @@ action:
             device_id: !input zha_lights
           alias: Turn RGB light off
 mode: single
+
 
 
 
