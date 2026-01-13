@@ -70,11 +70,11 @@ action:
       state: scanning_bed_surface
       alias: scanning Bed Surface
     - condition: state
-      entity_id: !input printer_stage
+      entity_id: !input current_stage
       state: cleaning_nozzle_tip
       alias: cleaning Nozzle Tip
     - condition: state
-      entity_id: !input printer_stage
+      entity_id: !input current_stage
       state: calibrating_extrusion
       alias: calibrating Extrusion
     - condition: state
@@ -99,25 +99,25 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_filament_runout
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_front_cover_falling
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_nozzle_temperature_malfunction
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_heat_bed_temperature_malfunction
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_chamber_temperature_control_error
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_cutter_error
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: paused_first_layer_error
       sequence:
       - service: light.turn_on
@@ -137,7 +137,7 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: idle
       sequence:
       - service: light.turn_on
@@ -157,7 +157,7 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: printing
       sequence:
       - service: light.turn_on
@@ -177,10 +177,10 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: filament_unloading
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: filament_loading
       sequence:
       - service: light.turn_on
@@ -240,7 +240,7 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: auto_bed_leveling
       sequence:
       - service: light.turn_on
@@ -260,10 +260,10 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: heatbed_preheating
         - condition: state
-          entity_id: !input printer_stage
+          entity_id: !input current_stage
           state: Heating Hotend
       sequence:
       - service: light.turn_on
@@ -301,6 +301,7 @@ action:
             device_id: !input zha_lights
           alias: Turn RGB light off
 mode: single
+
 
 
 
